@@ -55,14 +55,10 @@ Inserting this command into your `.juliarc.jl` file will cause this to
 happen automatically each time you start Julia.
 
 If you're on Linux but you do not have root privileges on your machine (and
-you can't persuade the sysadmin to install the libraries for you), you can [download](http://www.hdfgroup.org/HDF5/release/obtain5.html) the
-binaries and place them somewhere in your home directory. To use HDF5,
-you'll have to start julia as
-```
-LD_LIBRARY_PATH=/path/to/hdf5/libs julia
-```
-You can set up an alias so this happens for you automatically each time
-you start julia.
+you can't persuade the sysadmin to install the libraries for you), you can
+[download](http://www.hdfgroup.org/HDF5/release/obtain5.html) the
+binaries and place them in `JULIA_PKGDIR/HDF5/deps/usr/lib`. Both `libhdf5.so`
+and `libsz.so` should be in this directory (and not in some subdirectory).
 
 ## Quickstart
 

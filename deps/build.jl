@@ -6,6 +6,11 @@ using BinDeps
     hdf5 = library_dependency("libhdf5")
     provides(AptGet, "hdf5-tools", hdf5)
     provides(Yum, "hdf5", hdf5)
+    if WORD_SIZE == 32
+        provides(Binaries, URI("http://www.hdfgroup.org/ftp/HDF5/current/bin/linux/hdf5-1.8.13-linux-shared.tar.gz", hdf5, unpacked_dir=Pkg.dir("HDF5/deps/usr/lib/"))
+    else
+        provides(Binaries, URI("http://www.hdfgroup.org/ftp/HDF5/current/bin/linux-x86_64/hdf5-1.8.13-linux-x86_64-shared.tar.gz", hdf5, unpacked_dir=Pkg.dir("HDF5/deps/usr/lib/"))
+    end
 end
 
 @windows_only begin

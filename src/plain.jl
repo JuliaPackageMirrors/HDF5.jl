@@ -24,6 +24,15 @@ typealias Haddr       Uint64
 @osx_only import Homebrew # Add Homebrew/lib to the DL_LOAD_PATH
 @unix_only begin
     const libname = "libhdf5"
+    dl = dlopen_e(libname)
+    if dl == C_NULL
+        # Check for local installation inside package
+        usrlibdir = Pkg.dir("HDF5/deps/usr/lib")
+        if isdir(usrlibdir)
+            push!(DL_LOAD_PATH, usrlibdir)
+            dlopen("libsz")  # issue #97
+        end
+    end
     const libhdf5 = dlopen(libname)
 end
 @windows_only begin
